@@ -9,4 +9,5 @@ dependencies:
 
 test:
   override:
-    - docker run -ti -v /sys/fs/cgroup:/sys/fs/cgroup:ro -v /tmp/$(mktemp -d):/run -p 80 local/c7-systemd-httpd
+    - docker run -ti -v /sys/fs/cgroup:/sys/fs/cgroup:ro -v /tmp/$(mktemp -d):/run -p 80:80 local/c7-systemd-httpd
+    - curl --retry 10 --retry-delay 5 -v http://localhost:80
